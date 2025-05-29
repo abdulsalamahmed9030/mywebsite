@@ -10,18 +10,16 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen)
 
   return (
-    <header className="bg-[#0f172a] text-white fixed w-full z-50 shadow-md">
+    <header className="bg-[#f5f0e6] text-[#8B4513] fixed w-full z-50 shadow-md">
       <div className="flex items-center px-4 py-3 md:px-8">
-        {/* Logo */}
         <div className="flex items-center md:flex-1">
           <Image src="/logo.png" alt="Logo" width={200} height={100} />
         </div>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 justify-center flex-1">
           {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item, i) => {
-            const colors = ['text-sky-400', 'text-cyan-400', 'text-purple-400', 'text-sky-400', 'text-cyan-400']
-            const hover = ['hover:text-sky-300', 'hover:text-cyan-300', 'hover:text-purple-300', 'hover:text-sky-300', 'hover:text-cyan-300']
+            const colors = ['text-[#8B4513]', 'text-[#8B4513]', 'text-[#8B4513]', 'text-[#8B4513]', 'text-[#8B4513]']
+            const hover = ['hover:text-[#a0522d]', 'hover:text-[#a0522d]', 'hover:text-[#a0522d]', 'hover:text-[#a0522d]', 'hover:text-[#a0522d]']
             return (
               <Link
                 key={item}
@@ -34,20 +32,18 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Hamburger Icon (Mobile only) */}
         <div className="md:hidden ml-auto">
           <button
             onClick={toggleMenu}
-            className="border border-white p-2 rounded transition-colors duration-300 hover:border-cyan-400 hover:text-cyan-400"
+            className="border border-[#8B4513] p-2 rounded transition-colors duration-300 hover:border-[#a0522d] hover:text-[#a0522d]"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={24} color="#8B4513" /> : <Menu size={24} color="#8B4513" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav */}
       <div
-        className={`fixed top-0 left-0 h-full bg-[#0f172a] text-white z-40 transform transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 h-full bg-[#f5f0e6] text-[#8B4513] z-40 transform transition-transform duration-500 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } w-4/5 md:hidden`}
       >
@@ -57,13 +53,12 @@ export default function Header() {
           </div>
 
           {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item, i) => {
-            const mobileColors = ['text-sky-400', 'text-cyan-400', 'text-purple-400', 'text-sky-400', 'text-cyan-400']
             return (
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setIsOpen(false)}
-                className={`transition-colors duration-300 text-lg ${mobileColors[i]} hover:opacity-80`}
+                className="transition-colors duration-300 text-lg text-[#8B4513] hover:text-[#a0522d]"
               >
                 {item}
               </Link>
@@ -75,7 +70,7 @@ export default function Header() {
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="fixed top-0 right-0 w-1/5 h-full bg-black/30 backdrop-blur-sm z-30 md:hidden"
+          className="fixed top-0 right-0 w-1/5 h-full bg-black/10 backdrop-blur-sm z-30 md:hidden"
         />
       )}
     </header>

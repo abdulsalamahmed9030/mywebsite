@@ -31,26 +31,26 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative bg-[#0f172a] text-[#f1f5f9] min-h-[80vh] flex flex-col justify-center items-center overflow-hidden px-4 md:px-16">
+    <section className="relative bg-[#f5f0e6] text-[#8B4513] min-h-[80vh] flex flex-col justify-center items-center overflow-hidden px-4 md:px-16">
       {/* Moving background image */}
-      <div className="absolute top-0 left-0 w-full h-full z-0 opacity-100 pointer-events-none hero-bg" />
+      <div className="absolute top-0 left-0 w-full h-full z-0 opacity-30 pointer-events-none hero-bg" />
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-3xl transition-all duration-700 ease-in-out">
         <h1
           key={slides[currentSlide].title}
-          className="text-4xl md:text-6xl font-extrabold leading-tight text-sky-400 animate-fadeIn"
+          className="text-4xl md:text-6xl font-extrabold leading-tight text-[#A0522D] animate-fadeIn"
         >
           {slides[currentSlide].title}
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-slate-400 animate-fadeIn delay-100">
+        <p className="mt-4 text-lg md:text-xl text-[#704214] animate-fadeIn delay-100">
           {slides[currentSlide].description}
         </p>
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
-          <button className="bg-cyan-500 text-black px-6 py-3 rounded hover:bg-cyan-400 transition font-semibold shadow-md">
+          <button className="bg-[#A0522D] text-[#f5f0e6] px-6 py-3 rounded hover:bg-[#8B4513] transition font-semibold shadow-md">
             Get a Free Quote
           </button>
-          <button className="border border-cyan-400 text-cyan-400 px-6 py-3 rounded hover:bg-cyan-400 hover:text-black transition font-semibold">
+          <button className="border border-[#A0522D] text-[#A0522D] px-6 py-3 rounded hover:bg-[#A0522D] hover:text-[#f5f0e6] transition font-semibold">
             View Our Work
           </button>
         </div>
@@ -91,13 +91,9 @@ export default function HeroSection() {
           background-repeat: repeat-x;
           animation: slideinfinite 40s linear infinite;
           height: 100%;
-        }
-
-        @media (min-width: 768px) {
-          .hero-bg {
-            background-position: center top;
-            background-size: contain;
-          }
+          background-size: contain;
+          background-position: center top;
+          filter: brightness(0.7) sepia(0.4) hue-rotate(10deg);
         }
 
         @media (max-width: 767px) {
