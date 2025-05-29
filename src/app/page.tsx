@@ -1,4 +1,5 @@
 import AboutUs from "./components/AboutUs";
+import Footer from "./components/Footer";
 import Header from "./components/header";
 import HeroSection from "./components/HeroSection";
 import OurServices from "./components/OurServices";
@@ -13,6 +14,7 @@ export default function Home() {
 <OurServices />
 <WhyChooseUs />
 <AboutUs />
+<Footer />
     </>
   );
 }
