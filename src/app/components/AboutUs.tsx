@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -31,8 +32,20 @@ const team = [
   },
 ];
 
+const repeatedTeam = [...team, ...team]; // for infinite feel
+
 export default function AboutUs() {
-  const repeatedTeam = [...team, ...team]; // Duplicate team list
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (carouselRef.current && innerRef.current) {
+      const containerWidth = carouselRef.current.offsetWidth;
+      const contentWidth = innerRef.current.scrollWidth;
+      setWidth(contentWidth - containerWidth);
+    }
+  }, []);
 
   return (
     <section className="relative z-10 bg-black text-white px-4 py-16 sm:px-10 md:px-20 lg:px-32">
@@ -52,13 +65,18 @@ export default function AboutUs() {
           performance.
         </p>
 
-        {/* Infinite scroll wrapper */}
-        <div className="overflow-hidden">
-          <div className="flex gap-6 animate-scroll whitespace-nowrap">
+        {/* Draggable & Responsive Carousel */}
+        <div ref={carouselRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
+          <motion.div
+            ref={innerRef}
+            drag="x"
+            dragConstraints={{ right: 0, left: -width }}
+            className="flex gap-6 w-max"
+          >
             {repeatedTeam.map((member, index) => (
               <div
                 key={index}
-                className="w-[300px] bg-black/70 border border-[#f0b100] p-4 rounded-2xl shadow-md hover:shadow-yellow-400/40 transition duration-300 flex-shrink-0"
+                className="w-[260px] flex-shrink-0 bg-black/70 border border-[#f0b100] p-4 rounded-2xl shadow-md hover:shadow-yellow-400/40 transition duration-300"
               >
                 <div className="relative w-full h-56 mb-4 rounded-xl overflow-hidden">
                   <Image
@@ -72,25 +90,9 @@ export default function AboutUs() {
                 <p className="text-sm text-gray-300">{member.role}</p>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-
-      {/* Tailwind Custom Keyframes */}
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
