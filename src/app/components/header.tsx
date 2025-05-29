@@ -18,8 +18,8 @@ export default function Header() {
 
         <nav className="hidden md:flex gap-6 justify-center flex-1">
           {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item, i) => {
-            const colors = ['text-[#8B4513]', 'text-[#8B4513]', 'text-[#8B4513]', 'text-[#8B4513]', 'text-[#8B4513]']
-            const hover = ['hover:text-[#a0522d]', 'hover:text-[#a0522d]', 'hover:text-[#a0522d]', 'hover:text-[#a0522d]', 'hover:text-[#a0522d]']
+            const colors = Array(5).fill('text-[#8B4513]') // rusty brown text
+            const hover = Array(5).fill('hover:text-[#a0522d]') // lighter rusty brown hover
             return (
               <Link
                 key={item}
@@ -36,6 +36,7 @@ export default function Header() {
           <button
             onClick={toggleMenu}
             className="border border-[#8B4513] p-2 rounded transition-colors duration-300 hover:border-[#a0522d] hover:text-[#a0522d]"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X size={24} color="#8B4513" /> : <Menu size={24} color="#8B4513" />}
           </button>
@@ -53,12 +54,13 @@ export default function Header() {
           </div>
 
           {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item, i) => {
+            const mobileColors = Array(5).fill('text-[#8B4513]')
             return (
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setIsOpen(false)}
-                className="transition-colors duration-300 text-lg text-[#8B4513] hover:text-[#a0522d]"
+                className={`transition-colors duration-300 text-lg ${mobileColors[i]} hover:text-[#a0522d]`}
               >
                 {item}
               </Link>
@@ -70,7 +72,7 @@ export default function Header() {
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="fixed top-0 right-0 w-1/5 h-full bg-black/10 backdrop-blur-sm z-30 md:hidden"
+          className="fixed top-0 right-0 w-1/5 h-full bg-black/30 backdrop-blur-sm z-30 md:hidden"
         />
       )}
     </header>
