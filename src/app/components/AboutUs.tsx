@@ -14,9 +14,8 @@ const team = [
 
 const repeatedTeam = [...team, ...team];
 
-const deepNavy = '#1b1f3b';     // Dark professional
-const champagne = '#f9f5ec';    // Soft light background
-const goldAccent = '#d4af37';   // Gold touch
+const rustyBrown = '#8B4513';
+const beige = '#f5f0e6';
 
 export default function AboutUs() {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -35,7 +34,7 @@ export default function AboutUs() {
   return (
     <section
       className="relative z-10 px-4 py-16 sm:px-10 md:px-20 lg:px-32 text-center"
-      style={{ backgroundColor: champagne, color: deepNavy }}
+      style={{ backgroundColor: beige, color: rustyBrown }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -43,14 +42,14 @@ export default function AboutUs() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-extrabold mb-8"
-          style={{ color: deepNavy }}
+          style={{ color: rustyBrown }}
         >
           Our Expert Team
         </motion.h2>
 
         <p
           className="max-w-2xl mx-auto mb-10 text-base md:text-lg font-medium"
-          style={{ color: '#2e3b55' }} // Slightly softer for contrast
+          style={{ color: '#5c3d29' }}
         >
           Meet the minds behind our innovation. A balanced team of strategists, creatives, and engineers dedicated to building digital excellence.
         </p>
@@ -73,12 +72,12 @@ export default function AboutUs() {
               <motion.div
                 key={index}
                 role="listitem"
-                className={`w-[260px] sm:w-60 md:w-64 flex-shrink-0 bg-white border p-4 rounded-2xl shadow-md transition-shadow duration-300 ${
-                  isDragging ? 'shadow-yellow-800/70' : 'hover:shadow-yellow-600/50'
+                className={`w-[260px] sm:w-60 md:w-64 flex-shrink-0 border p-4 rounded-2xl shadow-md transition-shadow duration-300 ${
+                  isDragging ? 'shadow-amber-900/70' : 'hover:shadow-amber-800/50'
                 }`}
                 style={{
-                  borderColor: goldAccent,
-                  color: deepNavy,
+                  borderColor: rustyBrown,
+                  color: rustyBrown,
                   backgroundColor: '#ffffffcc',
                 }}
               >
@@ -90,10 +89,10 @@ export default function AboutUs() {
                     className="object-cover"
                   />
                 </div>
-                <h3 className="text-xl font-bold mb-1" style={{ color: deepNavy }}>
+                <h3 className="text-xl font-bold mb-1" style={{ color: rustyBrown }}>
                   {member.name}
                 </h3>
-                <p style={{ color: '#444c6b' }}>{member.role}</p>
+                <p style={{ color: '#5c3d29' }}>{member.role}</p>
               </motion.div>
             ))}
           </motion.div>
