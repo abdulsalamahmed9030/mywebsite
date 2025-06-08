@@ -1,14 +1,21 @@
 // src/data/servicesDetails.ts
 
+// data/servicesDetails.ts
+
 export const servicesDetails: Record<
   string,
   {
     title: string;
     longDescription: string;
+    seo?: {
+      title: string;
+      description: string;
+      keywords: string;
+    };
   }
 > = {
-  'website-design': {
-    title: 'Website Design',
+  "website-design": {
+    title: "Website Design",
     longDescription: `
       A great website begins with great design — and we specialize in crafting modern, responsive, and visually compelling user interfaces that convert visitors into customers. Our Website Design service blends creativity with strategy to reflect your brand’s identity and meet your users’ needs.
 
@@ -34,11 +41,18 @@ export const servicesDetails: Record<
 
       Let us help you design a website that’s not only beautiful but built for business success.
     `,
+    seo: {
+      title: "Website Design Services | Task Force Interior",
+      description:
+        "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+      keywords:
+        "website design, UI UX design, responsive web design, React websites, Next.js, MERN stack design",
+    },
   },
 
-'website-redesign': {
-  title: 'Website Redesign',
-  longDescription: `
+  "website-redesign": {
+    title: "Website Redesign",
+    longDescription: `
     If your website looks outdated, loads slowly, or doesn’t engage users the way it should — it’s time for a redesign. Our Website Redesign service breathes new life into your digital presence with a modern, high-performance, and conversion-driven approach.
 
     We don't just update visuals — we rethink your entire user experience. Whether you're dealing with legacy code, poor navigation, or unresponsive layouts, our redesign process ensures your site becomes a powerful asset for your brand.
@@ -62,10 +76,17 @@ export const servicesDetails: Record<
 
     Don’t let your outdated site hold your business back. With our expert-led redesign using React, Next.js, and full MERN stack capabilities, we transform your site into a performance-focused, user-friendly platform ready to grow with your goals.
   `,
-},
-'website-development': {
-  title: 'Website Development',
-  longDescription: `
+    seo: {
+      title: "salammmmm  Website Design Services | Task Force Interior",
+      description:
+        "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+      keywords:
+        "website design, UI UX design, responsive web design, React websites, Next.js, MERN stack design",
+    },
+  },
+  "website-development": {
+    title: "Website Development",
+    longDescription: `
     Building a powerful online presence requires more than just design — it demands expert website development using cutting-edge technologies. Our Website Development service leverages the best of React, Next.js, and the full MERN stack (MongoDB, Express.js, React, Node.js) to create fast, secure, and scalable websites tailored to your business goals.
 
     From custom web apps and eCommerce platforms to marketing sites and dashboards, we build solutions that are not only visually stunning but also engineered for high performance and excellent SEO.
@@ -92,10 +113,10 @@ export const servicesDetails: Record<
 
     Let us build your digital future with the power of React, Next.js, and the full MERN stack.
   `,
-},
-'seo': {
-  title: 'Search Engine Optimization',
-  longDescription: `
+  },
+  "seo": {
+    title: "Search Engine Optimization",
+    longDescription: `
     Ranking high on search engines like Google is critical for your website’s success. Our Search Engine Optimization (SEO) service combines proven strategies with modern web technologies like React, Next.js, and the MERN stack to maximize your site’s visibility and drive organic traffic.
 
     We understand that SEO is not just about keywords — it’s about creating a fast, user-friendly website with optimized content, technical excellence, and a solid foundation for search engines to crawl and index your pages.
@@ -121,10 +142,10 @@ export const servicesDetails: Record<
 
     Invest in SEO that works with your technology stack — and watch your online presence grow organically and sustainably.
   `,
-},
-'mobile-responsive-designs': {
-  title: 'Mobile Responsive Designs',
-  longDescription: `
+  },
+  "mobile-responsive-designs": {
+    title: "Mobile Responsive Designs",
+    longDescription: `
     In today's digital age, over half of all web traffic comes from mobile devices. That’s why mobile-responsive design isn’t optional — it’s essential. Our Mobile Responsive Designs service ensures your website looks stunning and functions flawlessly on every screen size, from smartphones and tablets to desktops.
 
     We build mobile-first designs using React’s flexible component system and Next.js’s server-side rendering to deliver fast-loading, intuitive interfaces tailored for all devices. This approach guarantees a consistent and engaging user experience that keeps visitors longer and improves conversions.
@@ -145,10 +166,10 @@ export const servicesDetails: Record<
 
     Let us make your website truly mobile-ready with modern React, Next.js, and full MERN stack expertise.
   `,
-},
-'performance-optimization': {
-  title: 'Performance Optimization',
-  longDescription: `
+  },
+  "performance-optimization": {
+    title: "Performance Optimization",
+    longDescription: `
     Website speed and performance are critical factors for user experience, search engine rankings, and conversion rates. Our Performance Optimization service focuses on making your site load faster, run smoother, and keep visitors engaged — using advanced techniques combined with the power of React, Next.js, and the full MERN stack.
 
     Slow websites frustrate users and increase bounce rates. We analyze and fine-tune every aspect of your website — from optimizing images and minifying code to improving server response times and caching strategies.
@@ -169,8 +190,7 @@ export const servicesDetails: Record<
 
     Let us help you maximize your site’s potential with expert performance tuning using the latest web technologies.
   `,
-},
-
+  },
 
   // ... similarly for all other services
 };
