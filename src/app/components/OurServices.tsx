@@ -16,18 +16,12 @@ const rustyBrown = '#8B4513';
 const beige = '#f5f0e6';
 
 const services = [
-    {
+  {
     title: 'Website Design',
     description:
       'We create eye-catching, user-friendly designs that captivate your audience and reflect your brand’s identity. From UI/UX to complete branding — we’ve got you covered.',
     icon: <MdDesignServices className="text-4xl" style={{ color: rustyBrown }} />,
     slug: 'website-design',
-    seo: {
-      title: 'Professional Website Design Services | Modern UI/UX & Branding',
-      description:
-        'Get stunning website design services that boost brand identity and user engagement. Expert UI/UX design using React, Next.js, and MERN stack for scalable digital presence.',
-      keywords: 'website design, UI/UX design, React website design, Next.js design, MERN stack development, branding design, responsive web design',
-    },
   },
   {
     title: 'Website Redesign',
