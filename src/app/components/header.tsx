@@ -9,6 +9,14 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const toggleMenu = () => setIsOpen(!isOpen)
 
+  const navLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about-us' },
+    { label: 'Services', href: '/services' },
+    { label: 'Projects', href: '/portfolio' },
+    { label: 'Contact', href: '/contact' },
+  ]
+
   return (
     <header className="bg-[#f5f0e6] text-[#8B4513] fixed w-full z-50 shadow-md">
       <div className="flex items-center px-4 py-3 md:px-8">
@@ -16,22 +24,20 @@ export default function Header() {
           <Image src="/logo.png" alt="Logo" width={200} height={100} />
         </div>
 
+        {/* 🖥 Desktop Navigation */}
         <nav className="hidden md:flex gap-6 justify-center flex-1">
-          {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item, i) => {
-            const colors = Array(5).fill('text-[#8B4513]') // rusty brown text
-            const hover = Array(5).fill('hover:text-[#a0522d]') // lighter rusty brown hover
-            return (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`transition-colors duration-300 font-medium ${colors[i]} ${hover[i]}`}
-              >
-                {item}
-              </Link>
-            )
-          })}
+          {navLinks.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="transition-colors duration-300 font-medium text-[#8B4513] hover:text-[#a0522d]"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
+        {/* 📱 Mobile Menu Toggle */}
         <div className="md:hidden ml-auto">
           <button
             onClick={toggleMenu}
@@ -43,6 +49,7 @@ export default function Header() {
         </div>
       </div>
 
+      {/* 📱 Mobile Navigation Menu */}
       <div
         className={`fixed top-0 left-0 h-full bg-[#f5f0e6] text-[#8B4513] z-40 transform transition-transform duration-500 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
@@ -53,22 +60,20 @@ export default function Header() {
             <Image src="/logo.png" alt="Logo" width={160} height={80} />
           </div>
 
-          {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item, i) => {
-            const mobileColors = Array(5).fill('text-[#8B4513]')
-            return (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={() => setIsOpen(false)}
-                className={`transition-colors duration-300 text-lg ${mobileColors[i]} hover:text-[#a0522d]`}
-              >
-                {item}
-              </Link>
-            )
-          })}
+          {navLinks.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              className="transition-colors duration-300 text-lg text-[#8B4513] hover:text-[#a0522d]"
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       </div>
 
+      {/* 📱 Backdrop for mobile menu */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
