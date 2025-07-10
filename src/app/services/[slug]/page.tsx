@@ -1,33 +1,49 @@
-import { servicesDetails } from "../../../data/servicesDetails";
+import { servicesDetails } from "@/src/data/servicesDetails";
 import type { Metadata } from "next";
 import ServiceDetailClient from "./ServiceDetailClient";
 
-interface Params {
-  slug: string;
-}
-
 interface Props {
-  params: Promise<Params>;  // params is Promise here
+  params: {
+    slug: string;
+  };
 }
 
+// ✅ 1. Static Params for Pre-rendering
+export async function generateStaticParams() {
+  return Object.keys(servicesDetails).map((slug) => ({ slug }));
+}
+
+// ✅ 2. SEO Metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
-  const service = servicesDetails[resolvedParams.slug];
+  const service = servicesDetails[params.slug];
+
   if (!service || !service.seo) {
     return {
-      title: "Service Not Found - YourSiteName",
+      title: "Service Not Found | Task Force Interior",
       description: "The requested service could not be found.",
     };
   }
+
   return {
     title: service.seo.title,
     description: service.seo.description,
     keywords: service.seo.keywords,
+    openGraph: {
+      title: service.seo.title,
+      description: service.seo.description,
+      images: [
+        {
+          url: "/default-og-image.jpg", // optional: dynamic image if available
+          width: 1200,
+          height: 630,
+          alt: service.seo.title,
+        },
+      ],
+    },
   };
 }
 
-// Make this async and await params here as well
-export default async function ServiceDetailPage({ params }: Props) {
-  const resolvedParams = await params;
-  return <ServiceDetailClient slug={resolvedParams.slug} />;
+// ✅ 3. Page Component
+export default function ServiceDetailPage({ params }: Props) {
+  return <ServiceDetailClient slug={params.slug} />;
 }

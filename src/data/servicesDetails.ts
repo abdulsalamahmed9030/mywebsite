@@ -10,7 +10,7 @@ export const servicesDetails: Record<
     seo?: {
       title: string;
       description: string;
-      keywords: string;
+      keywords: string | string[];
     };
   }
 > = {
@@ -42,12 +42,18 @@ export const servicesDetails: Record<
       Let us help you design a website that’s not only beautiful but built for business success.
     `,
     seo: {
-      title: "Website Design Services | Task Force Interior",
-      description:
-        "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
-      keywords:
-        "website design, UI UX design, responsive web design, React websites, Next.js, MERN stack design",
-    },
+  title: "Website Design Services | Task Force Interior",
+  description:
+    "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+  keywords: [
+    "website design",
+    "UI UX design",
+    "responsive web design",
+    "React websites",
+    "Next.js",
+    "MERN stack design"
+  ]
+}
   },
 
   "website-redesign": {
@@ -76,13 +82,19 @@ export const servicesDetails: Record<
 
     Don’t let your outdated site hold your business back. With our expert-led redesign using React, Next.js, and full MERN stack capabilities, we transform your site into a performance-focused, user-friendly platform ready to grow with your goals.
   `,
-    seo: {
-      title: "salammmmm  Website Design Services | Task Force Interior",
-      description:
-        "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
-      keywords:
-        "website design, UI UX design, responsive web design, React websites, Next.js, MERN stack design",
-    },
+     seo: {
+  title: "Website Design Services | Task Force Interior",
+  description:
+    "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+  keywords: [
+    "website design",
+    "UI UX design",
+    "responsive web design",
+    "React websites",
+    "Next.js",
+    "MERN stack design"
+  ]
+}
   },
   "website-development": {
     title: "Website Development",
@@ -113,6 +125,19 @@ export const servicesDetails: Record<
 
     Let us build your digital future with the power of React, Next.js, and the full MERN stack.
   `,
+   seo: {
+  title: "Website Design Services | Task Force Interior",
+  description:
+    "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+  keywords: [
+    "website design",
+    "UI UX design",
+    "responsive web design",
+    "React websites",
+    "Next.js",
+    "MERN stack design"
+  ]
+}
   },
   "seo": {
     title: "Search Engine Optimization",
@@ -142,6 +167,19 @@ export const servicesDetails: Record<
 
     Invest in SEO that works with your technology stack — and watch your online presence grow organically and sustainably.
   `,
+   seo: {
+  title: "Website Design Services | Task Force Interior",
+  description:
+    "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+  keywords: [
+    "website design",
+    "UI UX design",
+    "responsive web design",
+    "React websites",
+    "Next.js",
+    "MERN stack design"
+  ]
+}
   },
   "mobile-responsive-designs": {
     title: "Mobile Responsive Designs",
@@ -166,6 +204,19 @@ export const servicesDetails: Record<
 
     Let us make your website truly mobile-ready with modern React, Next.js, and full MERN stack expertise.
   `,
+   seo: {
+  title: "Website Design Services | Task Force Interior",
+  description:
+    "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+  keywords: [
+    "website design",
+    "UI UX design",
+    "responsive web design",
+    "React websites",
+    "Next.js",
+    "MERN stack design"
+  ]
+}
   },
   "performance-optimization": {
     title: "Performance Optimization",
@@ -190,6 +241,19 @@ export const servicesDetails: Record<
 
     Let us help you maximize your site’s potential with expert performance tuning using the latest web technologies.
   `,
+   seo: {
+  title: "Website Design Services | Task Force Interior",
+  description:
+    "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+  keywords: [
+    "website design",
+    "UI UX design",
+    "responsive web design",
+    "React websites",
+    "Next.js",
+    "MERN stack design"
+  ]
+}
   },
 
   // ... similarly for all other services
