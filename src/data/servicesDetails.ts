@@ -44,7 +44,7 @@ export const servicesDetails: Record<
     seo: {
   title: "Website Design Services | Task Force Interior",
   description:
-    "Professional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
+    "salamProfessional website design services using React, Next.js, and UI/UX best practices. Improve SEO, speed, and conversion.",
   keywords: [
     "website design",
     "UI UX design",

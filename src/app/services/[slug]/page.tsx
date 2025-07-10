@@ -2,30 +2,23 @@ import { servicesDetails } from "@/src/data/servicesDetails";
 import type { Metadata } from "next";
 import ServiceDetailClient from "./ServiceDetailClient";
 
-// ✅ Define types
-interface Props {
-  params: {
-    slug: string;
-  };
-}
-
-// ✅ 1. Pre-render all dynamic routes (SSG)
+// ✅ SSG: Pre-generate all paths
 export async function generateStaticParams() {
   return Object.keys(servicesDetails).map((slug) => ({ slug }));
 }
 
-// ✅ 2. SEO metadata per service
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// ✅ Metadata: Typed inline only (don't import any PageProps!)
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const service = servicesDetails[params.slug];
 
-  if (!service || !service.seo) {
+  if (!service?.seo) {
     return {
       title: "Service Not Found | Task Force Interior",
       description: "The requested service could not be found.",
-      robots: {
-        index: false,
-        follow: false,
-      },
     };
   }
 
@@ -38,20 +31,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: service.seo.description,
       images: [
         {
-          url: "/default-og-image.jpg", // Replace with service-specific image if available
+          url: "/default-og-image.jpg",
           width: 1200,
           height: 630,
           alt: service.seo.title,
         },
       ],
     },
-    alternates: {
-      canonical: `https://yourdomain.com/services/${params.slug}`, // 🔁 Replace with your actual domain
-    },
   };
 }
 
-// ✅ 3. Page component (NOT async, no duplicate)
-export default function ServiceDetailPage({ params }: Props) {
+// ✅ Page: Also typed inline (not custom types)
+export default function Page({
+  params,
+}: {
+  params: { slug: string };
+}) {
   return <ServiceDetailClient slug={params.slug} />;
 }
