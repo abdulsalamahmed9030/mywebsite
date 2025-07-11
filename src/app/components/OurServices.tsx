@@ -5,11 +5,8 @@ import { FaLaptopCode, FaMobileAlt, FaChartLine } from 'react-icons/fa';
 import {
   MdDesignServices,
   MdSpeed,
-  MdVerifiedUser,
-  MdUpdate,
 } from 'react-icons/md';
-import { RiMegaphoneLine, RiShieldCheckLine } from 'react-icons/ri';
-import { BsPersonBadge } from 'react-icons/bs';
+import { RiMegaphoneLine } from 'react-icons/ri';
 import { motion } from 'framer-motion';
 
 const rustyBrown = '#8B4513';
@@ -58,41 +55,7 @@ const services = [
     icon: <MdSpeed className="text-4xl" style={{ color: rustyBrown }} />,
     slug: 'performance-optimization',
   },
-  {
-    title: 'Google Business Profile Management',
-    description:
-      'Complete setup and optimization of your business profile with accurate information to boost visibility and engagement.',
-    icon: <BsPersonBadge className="text-4xl" style={{ color: rustyBrown }} />,
-    slug: 'google-business-profile-management',
-  },
-  {
-    title: 'Profile Updates & Edits',
-    description:
-      'We keep your profile fresh — updating business hours, services, and contact info quickly and reliably.',
-    icon: <MdUpdate className="text-4xl" style={{ color: rustyBrown }} />,
-    slug: 'profile-updates-edits',
-  },
-  {
-    title: 'Review Management',
-    description:
-      'Professional responses to reviews, removal help for false ones, and support restoring genuine feedback.',
-    icon: <RiShieldCheckLine className="text-4xl" style={{ color: rustyBrown }} />,
-    slug: 'review-management',
-  },
-  {
-    title: 'Profile Verification Assistance',
-    description:
-      'Get help completing your Google Business Profile verification process with ease and speed.',
-    icon: <MdVerifiedUser className="text-4xl" style={{ color: rustyBrown }} />,
-    slug: 'profile-verification-assistance',
-  },
-  {
-    title: 'Profile Monitoring & Support',
-    description:
-      'Ongoing monitoring to ensure your listing stays active and up-to-date with monthly performance insights.',
-    icon: <RiMegaphoneLine className="text-4xl" style={{ color: rustyBrown }} />,
-    slug: 'profile-monitoring-support',
-  },
+  
 ];
 
 export default function OurServices() {
