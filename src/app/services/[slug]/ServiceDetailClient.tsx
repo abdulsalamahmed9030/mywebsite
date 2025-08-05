@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
-import { servicesDetails } from "../../../data/servicesDetails";
+import { servicesDetails } from "@/data/servicesDetails";
+
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Header from "../../components/header";

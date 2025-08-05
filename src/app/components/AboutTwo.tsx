@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Header from "../components/header";
-import Footer from "../components/Footer";
+import Header from "./header";
+import Footer from "./Footer";
 
 const rustyBrown = "#8B4513";
 const beige = "#f5f0e6";

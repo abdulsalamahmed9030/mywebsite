@@ -1,47 +1,34 @@
-import { servicesDetails } from "@/src/data/servicesDetails";
+import { servicesDetails } from "@/data/servicesDetails";
 import type { Metadata } from "next";
 import ServiceDetailClient from "./ServiceDetailClient";
 
-// ✅ SSG: Pre-generate all paths
-export async function generateStaticParams() {
+// ✅ Dynamic params type inferred inline (no PageProps!)
+export const generateStaticParams = async () => {
   return Object.keys(servicesDetails).map((slug) => ({ slug }));
-}
+};
 
-// ✅ Metadata: Typed inline only (don't import any PageProps!)
-export async function generateMetadata({
+// ✅ Metadata — define `params` type inline
+export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string };
-}): Promise<Metadata> {
+}): Promise<Metadata> => {
   const service = servicesDetails[params.slug];
-
-  if (!service?.seo) {
+  if (!service) {
     return {
-      title: "Service Not Found | Task Force Interior",
+      title: "Service Not Found | RMG Solutions",
       description: "The requested service could not be found.",
     };
   }
 
   return {
-    title: service.seo.title,
-    description: service.seo.description,
-    keywords: service.seo.keywords,
-    openGraph: {
-      title: service.seo.title,
-      description: service.seo.description,
-      images: [
-        {
-          url: "/default-og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: service.seo.title,
-        },
-      ],
-    },
+    title: service.seo?.title || "RMG Solutions",
+    description: service.seo?.description || "",
+    keywords: service.seo?.keywords || "",
   };
-}
+};
 
-// ✅ Page: Also typed inline (not custom types)
+// ✅ Page Component — no separate type
 export default function Page({
   params,
 }: {
