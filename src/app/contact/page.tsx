@@ -1,13 +1,15 @@
 import React from 'react'
 import Header from '../components/header'
-import ContactWithFAQ from '../components/ContactForm'
 import Footer from '../components/Footer'
+import GetQuoteForm from '../components/ContactFormTwo'
 
 const page = () => {
   return (
     <>
       <Header />
-      <ContactWithFAQ />
+     <div className="pt-24 pb-16 bg-gray-50">
+  <GetQuoteForm />
+</div>
       <Footer />
     </>
   )

@@ -2,12 +2,12 @@ import Image from "next/image";
 import {
   Facebook,
   Instagram,
-  Twitter,
   Phone,
   Mail,
   MapPin,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { BsTwitterX } from "react-icons/bs";
 
 export default function Footer() {
   return (
@@ -102,7 +102,7 @@ export default function Footer() {
               <Facebook size={20} />
             </a>
             <a
-              href="https://instagram.com/yourusername"
+              href="https://www.instagram.com/bizoradev/?igsh=MXV4Y21seW53cjQxbw%3D%3D#"
               aria-label="Instagram"
               className="hover:text-[#a0522d] transition-colors"
               target="_blank"
@@ -119,15 +119,15 @@ export default function Footer() {
             >
               <FaWhatsapp size={20} />
             </a>
-            <a
-              href="https://twitter.com/yourusername"
-              aria-label="Twitter"
-              className="hover:text-[#a0522d] transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Twitter size={20} />
-            </a>
+           <a
+  href="https://x.com/bizoradev?t=6wAOANp5OcGzyh39p2CL3A&s=09"
+  aria-label="Twitter"
+  className="hover:text-[#a0522d] transition-colors"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <BsTwitterX size={20} />
+</a>
           </div>
         </div>
       </div>

@@ -22,8 +22,16 @@ export default function Header() {
       <div className="flex items-center px-4 py-3 md:px-8">
         {/* Logo */}
         <div className="flex items-center md:flex-1 pl-20">
-          <Image src="/logo.png" alt="Logo" width={100} height={100} />
-        </div>
+  <Link href="/" className="flex items-center">
+    <Image
+      src="/logo.png"
+      alt="Logo"
+      width={100}
+      height={100}
+      priority
+    />
+  </Link>
+</div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-6 justify-center flex-1">
