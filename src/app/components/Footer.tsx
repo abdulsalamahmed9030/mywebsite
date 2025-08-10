@@ -133,7 +133,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-[#8B4513] mt-12 pt-6 text-center text-sm">
-        &copy; {new Date().getFullYear()} MyCompany. All rights reserved.
+        &copy; {new Date().getFullYear()} BizoraDev. All rights reserved.
       </div>
     </footer>
   );

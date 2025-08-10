@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const slides = [
@@ -36,26 +37,31 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-30 pointer-events-none hero-bg" />
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-3xl transition-all duration-700 ease-in-out">
-        <h1
-          key={slides[currentSlide].title}
-          className="text-4xl md:text-6xl font-extrabold leading-tight text-[#A0522D] animate-fadeIn"
-        >
-          {slides[currentSlide].title}
-        </h1>
-        <p className="mt-4 text-lg md:text-xl text-[#704214] animate-fadeIn delay-100">
-          {slides[currentSlide].description}
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4 justify-center">
-          <button className="bg-[#A0522D] text-[#f5f0e6] px-6 py-3 rounded hover:bg-[#8B4513] transition font-semibold shadow-md">
-            Get a Free Quote
-          </button>
-          <button className="border border-[#A0522D] text-[#A0522D] px-6 py-3 rounded hover:bg-[#A0522D] hover:text-[#f5f0e6] transition font-semibold">
-            View Our Work
-          </button>
-        </div>
-      </div>
-
+     <div className="relative z-10 text-center max-w-3xl transition-all duration-700 ease-in-out">
+  <h1
+    key={slides[currentSlide].title}
+    className="text-4xl md:text-6xl font-extrabold leading-tight text-[#A0522D] animate-fadeIn"
+  >
+    {slides[currentSlide].title}
+  </h1>
+  <p className="mt-4 text-lg md:text-xl text-[#704214] animate-fadeIn delay-100">
+    {slides[currentSlide].description}
+  </p>
+  <div className="mt-8 flex flex-wrap gap-4 justify-center">
+    <Link
+      href="/contact"
+      className="bg-[#A0522D] text-[#f5f0e6] px-6 py-3 rounded hover:bg-[#8B4513] transition font-semibold shadow-md"
+    >
+      Get a Free Quote
+    </Link>
+    <Link
+      href="/portfolio"
+      className="border border-[#A0522D] text-[#A0522D] px-6 py-3 rounded hover:bg-[#A0522D] hover:text-[#f5f0e6] transition font-semibold"
+    >
+      View Our Work
+    </Link>
+  </div>
+</div>
       {/* Custom styles */}
       <style jsx>{`
         @keyframes slideinfinite {
