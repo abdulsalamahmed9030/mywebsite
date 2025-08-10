@@ -12,7 +12,7 @@ import { FaWhatsapp } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer className="bg-[#f5f0e6] text-[#8B4513] border-t border-[#8B4513] py-12 px-4 md:px-20">
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Logo + Description */}
         <div>
           <Image src="/logo.png" alt="Logo" width={160} height={80} />
@@ -26,18 +26,22 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-l">
-            {["Home", "About", "Services", "Projects", "Contact"].map(
-              (link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link.toLowerCase()}`}
-                    className="hover:text-[#a0522d] transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              )
-            )}
+            {[
+              { label: "Home", href: "/" },
+              { label: "About", href: "/about-us" },
+              { label: "Services", href: "/services" },
+              { label: "Projects", href: "/portfolio" },
+              { label: "Contact", href: "/contact" },
+            ].map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className="hover:text-[#a0522d] transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -46,15 +50,18 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Our Services</h3>
           <ul className="space-y-2 text-l">
             {[
-              "Roofing",
-              "Consulting",
-              "Renovation",
-              "Construction",
-              "Maintenance",
+              { name: "Website Design", link: "/services/website-design" },
+              { name: "Website Development", link: "/services/website-development" },
+              { name: "Mobile Responsive Designs", link: "/services/mobile-responsive-designs" },
+              { name: "Performance Optimization", link: "/services/performance-optimization" },
+              { name: "Search Engine Optimization", link: "/services/seo" },
             ].map((service) => (
-              <li key={service}>
-                <a href="#" className="hover:text-[#a0522d] transition-colors">
-                  {service}
+              <li key={service.name}>
+                <a
+                  href={service.link}
+                  className="hover:text-[#a0522d] transition-colors"
+                >
+                  {service.name}
                 </a>
               </li>
             ))}
@@ -71,41 +78,53 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone size={18} />
-              9390809036
+              <a href="tel:9390809036" className="hover:text-[#a0522d] transition-colors">
+                9390809036
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Mail size={18} />
-              info@mycompany.com
+              <a href="mailto:info@bizoradev.com" className="hover:text-[#a0522d] transition-colors">
+                info@bizoradev.com
+              </a>
             </li>
           </ul>
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-6">
             <a
-              href="#"
+              href="https://facebook.com/yourpage"
               aria-label="Facebook"
               className="hover:text-[#a0522d] transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Facebook size={20} />
             </a>
             <a
-              href="#"
+              href="https://instagram.com/yourusername"
               aria-label="Instagram"
               className="hover:text-[#a0522d] transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Instagram size={20} />
             </a>
             <a
-              href="#"
+              href="https://wa.me/9390809036"
               aria-label="WhatsApp"
               className="hover:text-[#a0522d] transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <FaWhatsapp size={20} />
             </a>
             <a
-              href="#"
+              href="https://twitter.com/yourusername"
               aria-label="Twitter"
               className="hover:text-[#a0522d] transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Twitter size={20} />
             </a>

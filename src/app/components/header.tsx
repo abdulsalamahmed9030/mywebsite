@@ -82,7 +82,7 @@ export default function Header() {
         />
       )}
       <Link
-  href="https://wa.me/919876543210" // replace with your number
+  href="https://wa.me/919390809036" // replace with your number
   target="_blank"
   rel="noopener noreferrer"
   className="fixed bottom-10 left-4 z-50 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
