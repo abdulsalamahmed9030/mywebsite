@@ -14,16 +14,76 @@ type Project = {
   country: string;
   city?: string;
   url: string;
-  bannerSrc: string;
+  bannerSrc: string;  // use this for banner (can include logo baked-in)
   tech: string[];
   cssStack?: string;
 };
 
 const projects: Project[] = [
-  // ...your projects unchanged...
+  {
+    id: 1,
+    name: "Task Force Interiors",
+    country: "India",
+    city: "Hyderabad",
+    url: "https://www.taskforceinteriors.com/",
+    bannerSrc: "/portfolio/taskforce-banner.jpg",
+    tech: ["Next.js", "React", "TypeScript"],
+    cssStack: "Tailwind CSS",
+  },
+  {
+    id: 2,
+    name: "Infinity Construction NYC",
+    country: "USA",
+    city: "New York",
+    url: "https://www.infinityconstructionnyc.com/",
+    bannerSrc: "/portfolio/infinity-banner.jpg",
+    tech: ["Next.js", "React", "TypeScript"],
+    cssStack: "Tailwind CSS",
+  },
+  {
+    id: 3,
+    name: "TurboShop",
+    country: "Canada",
+    city: "Calgary, Alberta.",
+    url: "https://www.turboshop.ca/",
+    bannerSrc: "/portfolio/turboshop-banner.jpg",
+    tech: ["Next.js", "React", "TypeScript"],
+    cssStack: "Tailwind CSS",
+  },
+  {
+    id: 4,
+    name: "Mehfil Kitchen",
+    country: "USA",
+    city: "Lincoln Ave",
+    url: "https://mehfilkitchen.com/",
+    bannerSrc: "/portfolio/mehfilkitchen-banner.jpg",
+    tech: ["Next.js", "React", "Framer Motion"],
+    cssStack: "Tailwind CSS",
+  },
+  {
+    id: 5,
+    name: "Sasroofing & Waterproofing",
+    country: "USA",
+    city: "New York",
+    url: "https://www.sasroofingwaterproofing.com/",
+    bannerSrc: "/portfolio/sasroofingwaterproofing-banner.jpg",
+    tech: ["Next.js", "React", "TypeScript"],
+    cssStack: "Tailwind CSS",
+  },
+  {
+    id: 6,
+    name: "I-Revive Cupping Clinic",
+    country: "India",
+    city: "Hyderabad",
+    url: "https://www.i-revive.com/",
+    bannerSrc: "/portfolio/i-revive-banner.jpg",
+    tech: ["Next.js", "React", "Framer Motion"],
+    cssStack: "Tailwind CSS",
+  },
 ];
 
 export default function ProjectsGrid() {
+  // mobile-only toggle
   const [openId, setOpenId] = useState<Project["id"] | null>(null);
 
   return (
@@ -95,6 +155,7 @@ export default function ProjectsGrid() {
                     isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
                   ].join(" ")}
                 >
+                  {/* Tech badges */}
                   <div className="mb-3 flex flex-wrap items-center gap-2">
                     {p.tech.map((t) => (
                       <span
@@ -107,6 +168,7 @@ export default function ProjectsGrid() {
                     ))}
                   </div>
 
+                  {/* Meta info */}
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-white text-xs md:text-sm">
                     {p.cssStack && (
                       <span>
@@ -119,13 +181,16 @@ export default function ProjectsGrid() {
                     </span>
                   </div>
 
+                  {/* CTA */}
                   <div className="mt-3">
                     <Link
                       href={p.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-black shadow-sm bg-white" /* fixed bg class */
+                      className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-black shadow-sm bg-white"
                       aria-label={`View ${p.name} website (opens in new tab)`}
+                      // prevent any parent click handlers from firing
+                      onClick={(e) => e.stopPropagation()}
                     >
                       View Website
                       <svg width="16" height="16" viewBox="0 0 24 24" className="opacity-90" aria-hidden="true">
@@ -143,7 +208,7 @@ export default function ProjectsGrid() {
                 </div>
 
                 {/* MOBILE TAP TARGET
-                    Only render when CLOSED so it doesn't block the CTA.
+                    Render ONLY when CLOSED so it doesn't block the CTA.
                 */}
                 {!isOpen && (
                   <button
@@ -155,12 +220,15 @@ export default function ProjectsGrid() {
                   />
                 )}
 
-                {/* Optional close hotspot on mobile when open */}
+                {/* Optional close chip on mobile when open */}
                 {isOpen && (
                   <button
                     type="button"
                     className="absolute right-2 top-2 z-30 md:hidden rounded-full bg-white/90 px-2 py-1 text-xs font-semibold"
-                    onClick={() => setOpenId(null)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenId(null);
+                    }}
                     aria-label="Hide details"
                   >
                     Close
