@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
+import { Menu, PhoneCall, X } from 'lucide-react'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -112,21 +112,12 @@ export default function Header() {
 
       {/* Call Us Floating Button */}
       <Link
-        href="tel:+919390809036"
-        className="fixed bottom-10 right-4 z-50 bg-[#8B4513] hover:bg-[#a0522d] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          className="bi bi-telephone-fill"
-          viewBox="0 0 16 16"
-        >
-          <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 7.548 7.548c.601.211 1.286.033 1.77-.45l1.035-1.034a.678.678 0 0 0-.063-1.015l-2.347-1.87a.678.678 0 0 0-.58-.122l-1.514.378a12.042 12.042 0 0 1-4.486-4.487l.378-1.514a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-        </svg>
-        <span className="hidden sm:inline">Call Us</span>
-      </Link>
+  href="tel:+919390809036"
+  className="fixed bottom-10 right-4 z-50 bg-[#8B4513] hover:bg-[#a0522d] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
+>
+  <PhoneCall size={20} className="text-white" />
+  <span className="hidden sm:inline">Call Us</span>
+</Link>
     </header>
   )
 }

@@ -137,8 +137,8 @@ export default function ContactWithFAQ() {
       {
         "@type": "ContactPoint",
         "contactType": "sales",
-        "email": "hello@bizoradev.com",
-        "telephone": "+91-00000-00000",
+        "email": "info@bizoradev.com",
+        "telephone": "+91-9390809036",
         "areaServed": ["Hyderabad", "India", "United Arab Emirates", "United States", "Worldwide"],
         "availableLanguage": ["en", "hi"]
       }
@@ -337,9 +337,10 @@ export default function ContactWithFAQ() {
             {/* Alternate contact options */}
             <p id="contact-alt" className="mt-4 text-sm opacity-80">
               Prefer email or WhatsApp? Write to{" "}
-              <a className="underline" href="mailto:hello@bizoradev.com">hello@bizoradev.com</a>{" "}
+              <a className="underline" href="mailto:info@bizoradev.com">info@bizoradev.com
+</a>{" "}
               or message us at{" "}
-              <a className="underline" href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer">
+              <a className="underline" href="https://wa.me/919390809036" target="_blank" rel="noopener noreferrer">
                 WhatsApp
               </a>.
             </p>
