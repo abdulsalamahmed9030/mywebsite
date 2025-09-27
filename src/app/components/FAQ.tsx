@@ -1,91 +1,167 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Script from "next/script";
 
-const faqs = [
+const rustyBrown = "#8B4513";
+
+type FAQItem = { question: string; answer: string; slug: string };
+
+const faqs: FAQItem[] = [
   {
-    question: 'What services does BizoraDev offer?',
+    question: "What services does BizoraDev offer?",
     answer:
-      'BizoraDev offers website design, development, SEO, performance optimization, and mobile-responsive solutions tailored to businesses of all sizes.',
+      "Website design, website redesign, custom development (Next.js/React), SEO, performance optimization, and mobile-responsive experiences for startups and established brands.",
+    slug: "services-we-offer",
   },
   {
-    question: 'How long does it take to build a website?',
+    question: "How long does it take to build a website?",
     answer:
-      'Most projects are completed within 2–4 weeks, depending on complexity and content readiness.',
+      "Most small–medium projects land in 2–4 weeks. Larger scopes (custom integrations, complex content) can take 6–8 weeks. We’ll give you a clear timeline after a quick discovery call.",
+    slug: "timeline",
   },
   {
-    question: 'Is SEO included in website development?',
+    question: "Is SEO included in website development?",
     answer:
-      'Yes. All our websites are built with SEO best practices, and we offer dedicated SEO services for advanced rankings.',
+      "Yes—technical SEO fundamentals are built in (metadata, clean URLs, schema, CWV). For aggressive ranking goals, we offer dedicated ongoing SEO plans.",
+    slug: "seo-included",
   },
   {
-    question: 'Do you offer website redesign services?',
+    question: "Do you offer website redesign services?",
     answer:
-      'Absolutely! We specialize in modernizing outdated websites to be faster, cleaner, and more user-friendly.',
+      "Absolutely. We modernize UX, improve site structure, and migrate without losing existing SEO equity.",
+    slug: "redesign",
   },
   {
-    question: 'How can I get a quote from BizoraDev?',
+    question: "Do you provide e-commerce websites?",
     answer:
-      'Fill out our contact form, and we’ll get back to you within 24 hours with a tailored proposal.',
+      "Yes. We build Shopify and WooCommerce stores, and custom Next.js storefronts when you need full control.",
+    slug: "ecommerce",
   },
   {
-    question: 'Do you provide e-commerce websites?',
+    question: "Can you optimize my current website’s speed and SEO?",
     answer:
-      'Yes, we build scalable and secure e-commerce websites using Shopify, WooCommerce, and custom React/Next.js solutions.',
+      "Yes. We run a technical audit, fix Core Web Vitals, ship caching and image strategy, and clean up on-page issues for better rankings.",
+    slug: "optimization",
   },
-  
   {
-    question: 'Can you optimize my current website’s speed and SEO?',
+    question: "What are your pricing and payment terms?",
     answer:
-      'Definitely. We perform audits and implement improvements to boost load times, Core Web Vitals, and search engine visibility.',
-  },{
-    question: 'Can you optimize my current website’s speed and SEO?',
+      "We quote per-project with clear scope. Typical projects are milestone-based (50% start, 30% mid, 20% launch). Monthly retainers available for SEO & maintenance.",
+    slug: "pricing-terms",
+  },
+  {
+    question: "Do you provide maintenance after launch?",
     answer:
-      'Definitely. We perform audits and implement improvements to boost load times, Core Web Vitals, and search engine visibility.',
-  },{
-    question: 'Can you optimize my current website’s speed and SEO?',
-    answer:
-      'Definitely. We perform audits and implement improvements to boost load times, Core Web Vitals, and search engine visibility.',
-  },{
-    question: 'Can you optimize my current website’s speed and SEO?',
-    answer:
-      'Definitely. We perform audits and implement improvements to boost load times, Core Web Vitals, and search engine visibility.',
+      "Yes—optional care plans cover updates, backups, security patches, and small enhancements so the site stays fast and secure.",
+    slug: "maintenance",
   },
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  // open correct FAQ if someone links directly (/#faq-slug)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash?.replace("#faq-", "");
+    if (!hash) return;
+    const found = faqs.findIndex((f) => f.slug === hash);
+    if (found >= 0) setOpenIndex(found);
+  }, []);
+
+  const faqJsonLd = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })),
+    }),
+    []
+  );
 
   return (
-    <div className="bg-white/90 border border-amber-700/50 backdrop-blur-sm p-10 rounded-2xl shadow-xl flex flex-col justify-between min-h-[550px]">
-      <div>
-        <h3 className="text-2xl font-bold mb-6 text-amber-700">FAQs</h3>
+    <section
+      aria-labelledby="faq-heading"
+      className="bg-white/95 border border-amber-700/40 backdrop-blur-sm rounded-2xl shadow-xl p-8 md:p-10 h-full"
+    >
+      <h3
+        id="faq-heading"
+        className="text-3xl md:text-4xl font-extrabold mb-2"
+        style={{ color: rustyBrown }}
+      >
+        FAQs
+      </h3>
+      <p className="mb-8 text-sm md:text-base opacity-80">
+        Quick answers to common questions. Still unsure?{" "}
+        <a href="#contact-heading" className="underline">Contact us</a>.
+      </p>
 
-        <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <button
-                onClick={() => setOpen(open === index ? null : index)}
-                className="w-full text-left text-lg font-semibold flex justify-between items-center transition-all duration-200"
-              >
-                <span>{faq.question}</span>
-                <span className="text-amber-700">{open === index ? '−' : '+'}</span>
-              </button>
-              {open === index && (
-                <motion.p
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  transition={{ duration: 0.3 }}
-                  className="text-sm mt-2 text-neutral-700"
+      <div role="list" aria-label="Frequently asked questions" className="divide-y">
+        {faqs.map((faq, i) => {
+          const isOpen = openIndex === i;
+          return (
+            <article key={faq.slug} role="listitem" className="py-4 md:py-5">
+              <h4 className="text-lg md:text-xl">
+                <button
+                  id={`faq-${faq.slug}`}
+                  aria-controls={`faq-panel-${faq.slug}`}
+                  aria-expanded={isOpen}
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  className="w-full flex items-start justify-between gap-3 text-left font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg px-2 py-1"
+                  style={{ color: rustyBrown }}
                 >
-                  {faq.answer}
-                </motion.p>
-              )}
-            </div>
-          ))}
-        </div>
+                  <span>{faq.question}</span>
+                  <span
+                    aria-hidden="true"
+                    className={`mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full border transition-transform ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                    style={{ borderColor: "rgba(139,69,19,0.35)", color: rustyBrown }}
+                  >
+                    ▾
+                  </span>
+                </button>
+              </h4>
+
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    id={`faq-panel-${faq.slug}`}
+                    role="region"
+                    aria-labelledby={`faq-${faq.slug}`}
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pt-3 px-2 text-[15px] leading-relaxed text-neutral-700">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </article>
+          );
+        })}
       </div>
-    </div>
+
+      {/* Balance with form on two-column layouts */}
+      <style jsx>{`
+        section {
+          min-height: 600px;
+        }
+      `}</style>
+
+      <Script id="faqpage-jsonld" type="application/ld+json">
+        {JSON.stringify(faqJsonLd)}
+      </Script>
+    </section>
   );
 }
