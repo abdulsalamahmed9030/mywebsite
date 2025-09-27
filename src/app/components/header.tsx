@@ -10,7 +10,7 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen)
 
   const navLinks = [
-    { label: 'Home', href: '/' },
+    { label: 'Home4', href: '/' },
     { label: 'About', href: '/about-us' },
     { label: 'Services', href: '/services' },
     { label: 'Projects', href: '/portfolio' },
