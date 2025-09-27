@@ -21,7 +21,7 @@ export default function Header() {
   <header className="bg-[#f5f0e6] text-[#8B4513] fixed w-full z-50 shadow-md">
       <div className="flex items-center px-4 py-3 md:px-8">
         {/* Logo */}
-        <div className="flex items-center md:flex-1 pl-20">
+       <div className="flex items-center md:flex-1 md:pl-20">
   <Link href="/" className="flex items-center">
     <Image
       src="/logo.png"
