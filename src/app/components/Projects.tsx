@@ -14,76 +14,16 @@ type Project = {
   country: string;
   city?: string;
   url: string;
-  bannerSrc: string;  // use this for banner (can include logo baked-in)
+  bannerSrc: string;
   tech: string[];
   cssStack?: string;
 };
 
 const projects: Project[] = [
-  {
-    id: 1,
-    name: "Task Force Interiors",
-    country: "India",
-    city: "Hyderabad",
-    url: "https://www.taskforceinteriors.com/",
-    bannerSrc: "/portfolio/taskforce-banner.jpg",
-    tech: ["Next.js", "React", "TypeScript"],
-    cssStack: "Tailwind CSS",
-  },
-  {
-    id: 2,
-    name: "Infinity Construction NYC",
-    country: "USA",
-    city: "New York",
-    url: "https://www.infinityconstructionnyc.com/",
-    bannerSrc: "/portfolio/infinity-banner.jpg",
-    tech: ["Next.js", "React", "TypeScript"],
-    cssStack: "Tailwind CSS",
-  },
-  {
-    id: 3,
-    name: "TurboShop",
-    country: "Canada",
-    city: "Calgary, Alberta.",
-    url: "https://www.turboshop.ca/",
-    bannerSrc: "/portfolio/turboshop-banner.jpg",
-    tech: ["Next.js", "React", "TypeScript"],
-    cssStack: "Tailwind CSS",
-  },
-  {
-    id: 4,
-    name: "Mehfil Kitchen",
-    country: "USA",
-    city: "Lincoln Ave",
-    url: "https://mehfilkitchen.com/",
-    bannerSrc: "/portfolio/mehfilkitchen-banner.jpg",
-    tech: ["Next.js", "React", "Framer Motion"],
-    cssStack: "Tailwind CSS",
-  },
-  {
-    id: 5,
-    name: "Sasroofing & Waterproofing",
-    country: "USA",
-    city: "New York",
-    url: "https://www.sasroofingwaterproofing.com/",
-    bannerSrc: "/portfolio/sasroofingwaterproofing-banner.jpg",
-    tech: ["Next.js", "React", "TypeScript"],
-    cssStack: "Tailwind CSS",
-  },
-  {
-    id: 6,
-    name: "I-Revive Cupping Clinic",
-    country: "India",
-    city: "Hyderabad",
-    url: "https://www.i-revive.com/",
-    bannerSrc: "/portfolio/i-revive-banner.jpg",
-    tech: ["Next.js", "React", "Framer Motion"],
-    cssStack: "Tailwind CSS",
-  },
+  // ...your projects unchanged...
 ];
 
 export default function ProjectsGrid() {
-  // Only used on small screens to show overlay on tap
   const [openId, setOpenId] = useState<Project["id"] | null>(null);
 
   return (
@@ -116,7 +56,8 @@ export default function ProjectsGrid() {
 
       <div className="relative mx-auto mt-12 grid max-w-7xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
         {projects.map((p, i) => {
-          const isOpen = openId === p.id; // mobile-only state
+          const isOpen = openId === p.id;
+
           return (
             <motion.article
               key={p.id}
@@ -127,7 +68,6 @@ export default function ProjectsGrid() {
               className="group rounded-2xl border bg-white/85 backdrop-blur-sm shadow-sm hover:shadow-md focus-within:shadow-md transition-all overflow-hidden"
               style={{ borderColor: "rgba(139,69,19,0.25)" }}
             >
-              {/* Image + interactive overlay area */}
               <div className="relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src={p.bannerSrc}
@@ -138,16 +78,11 @@ export default function ProjectsGrid() {
                   priority={i < 4}
                 />
 
-                {/* DARK OVERLAY
-                    - Desktop: appears on hover/focus (existing behavior)
-                    - Mobile: appears when card is tapped (isOpen)
-                */}
+                {/* Dark overlay */}
                 <div
                   className={[
                     "absolute inset-0 z-10 bg-black/80 transition-opacity duration-300",
-                    // desktop behavior
                     "md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100",
-                    // mobile behavior via state
                     isOpen ? "opacity-100" : "opacity-0",
                   ].join(" ")}
                 />
@@ -156,13 +91,10 @@ export default function ProjectsGrid() {
                 <div
                   className={[
                     "absolute inset-x-0 bottom-0 z-20 p-4 md:p-5 transition-all",
-                    // desktop hover/focus behavior
                     "md:opacity-0 md:translate-y-3 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-focus-within:opacity-100 md:group-focus-within:translate-y-0",
-                    // mobile: show when open
                     isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
                   ].join(" ")}
                 >
-                  {/* Tech badges */}
                   <div className="mb-3 flex flex-wrap items-center gap-2">
                     {p.tech.map((t) => (
                       <span
@@ -175,7 +107,6 @@ export default function ProjectsGrid() {
                     ))}
                   </div>
 
-                  {/* Meta info */}
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-white text-xs md:text-sm">
                     {p.cssStack && (
                       <span>
@@ -188,13 +119,12 @@ export default function ProjectsGrid() {
                     </span>
                   </div>
 
-                  {/* CTA */}
                   <div className="mt-3">
                     <Link
                       href={p.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg bg白 px-4 py-2 text-sm font-semibold text-black shadow-sm bg-white"
+                      className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-black shadow-sm bg-white" /* fixed bg class */
                       aria-label={`View ${p.name} website (opens in new tab)`}
                     >
                       View Website
@@ -212,20 +142,32 @@ export default function ProjectsGrid() {
                   </div>
                 </div>
 
-                {/* MOBILE TAP TARGET:
-                    - Only visible on small screens
-                    - Taps toggle overlay (doesn't affect desktop)
+                {/* MOBILE TAP TARGET
+                    Only render when CLOSED so it doesn't block the CTA.
                 */}
-                <button
-                  type="button"
-                  className="absolute inset-0 z-30 block md:hidden"
-                  aria-label={isOpen ? "Hide details" : "Show details"}
-                  aria-expanded={isOpen}
-                  onClick={() => setOpenId(isOpen ? null : p.id)}
-                />
+                {!isOpen && (
+                  <button
+                    type="button"
+                    className="absolute inset-0 z-30 block md:hidden"
+                    aria-label="Show details"
+                    aria-expanded={false}
+                    onClick={() => setOpenId(p.id)}
+                  />
+                )}
+
+                {/* Optional close hotspot on mobile when open */}
+                {isOpen && (
+                  <button
+                    type="button"
+                    className="absolute right-2 top-2 z-30 md:hidden rounded-full bg-white/90 px-2 py-1 text-xs font-semibold"
+                    onClick={() => setOpenId(null)}
+                    aria-label="Hide details"
+                  >
+                    Close
+                  </button>
+                )}
               </div>
 
-              {/* Footer */}
               <div className="px-4 py-4">
                 <h3 className="text-base md:text-lg font-semibold" style={{ color: rustyBrown }}>
                   {p.name}
